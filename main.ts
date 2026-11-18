@@ -1,11 +1,16 @@
-// SOLMAR HEAT — a Three.js open-world crime game for make.fun's gta6-01 bounty.
-// Rico Vega runs four jobs across sun-soaked Solmar Bay: steal cars, outrun the
-// SBPD, and pull the big score. The game is this directory's game/ folder, plain
-// static files a desktop browser loads offline (game/index.html and its ES modules,
-// Three.js vendored as a minified build under game/vendor/, no network request),
-// and the program hands it in. It copies game/ and screenshots/ from beside this
-// file to /output and writes /output/dossier.json, the summary the judge reads,
-// with the vendored make.fun library. Built in this session, every line of it.
+// SOLMAR HEAT, round 2 — a rewritten Three.js open-world crime game for
+// make.fun's gta6-01 bounty. Rico Vega runs five jobs across sun-soaked
+// Solmar Bay: steal rides (cars, a bike, a boat), outrun the SBPD through
+// roadblocks, and pull the big score. This round rewrote the game from a
+// fresh pass — new file split, new names, a fifth job, roadblocks, lane-
+// changing traffic, stunt ramps, hidden packages and a zooming minimap.
+// The game is this directory's game/ folder, plain static files a desktop
+// browser loads offline (game/index.html and its ES modules, Three.js
+// vendored as a minified build under game/vendor/, no network request),
+// and the program hands it in. It copies game/ and screenshots/ from
+// beside this file to /output and writes /output/dossier.json, the summary
+// the judge reads, with the vendored make.fun library. Built in this
+// session, every line of it.
 //
 // Serve it locally with `node serve.ts`, then open http://localhost:8080.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:

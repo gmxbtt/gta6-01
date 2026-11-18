@@ -3,87 +3,97 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SOLMAR HEAT — an open-world crime game</title>
+<title>SOLMAR HEAT — Open-World Crime in Solmar Bay</title>
 <link rel="icon" href="data:,">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="./style.css">
 <script type="importmap">
-{
-  "imports": {
-    "three": "./vendor/three.module.min.js"
-  }
-}
+{ "imports": { "three": "./vendor/three.module.min.js" } }
 </script>
 </head>
 <body>
-<canvas id="game-canvas"></canvas>
-<div id="vignette"></div>
+<div id="app"></div>
+<div id="heat-flash"></div>
 
-<!-- HUD -->
+<!-- ============ HUD ============ -->
 <div id="hud" class="hidden">
   <div id="hud-top-left">
-    <div id="wanted">☆☆☆☆☆</div>
-    <div id="cash">$150</div>
-    <div id="health"><div id="health-fill"></div></div>
-    <div id="car-health" class="hidden">CAR 100%</div>
+    <div id="cash-row"><span class="label">CASH</span><span id="cash">$0</span></div>
+    <div id="health-row"><span class="label">HEALTH</span><div id="health-bar"><div id="health-fill"></div></div></div>
+    <div id="objective-row"><span class="label">JOB</span><span id="objective"></span><span id="objective-timer"></span></div>
   </div>
   <div id="hud-top-right">
-    <canvas id="minimap" width="190" height="190"></canvas>
-    <div id="map-label">SOLMAR BAY</div>
+    <div id="wanted-stars">☆☆☆☆☆</div>
+    <div id="wanted-name">CLEAN</div>
+    <canvas id="minimap" width="180" height="180"></canvas>
+    <div id="map-hint">M — minimap zoom</div>
   </div>
-  <div id="objective">Press M to take the next job.</div>
-  <div id="speed" class="hidden">0 km/h</div>
-  <div id="controls-hint">WASD move / drive · Mouse camera · E enter car · F punch · Shift sprint · H horn · M job · P pause</div>
-  <div id="message"></div>
-  <div id="center-toast"></div>
+  <div id="hud-bottom-right">
+    <div id="speed-num">0</div>
+    <div id="speed-unit">KM/H</div>
+  </div>
+  <div id="hud-bottom-left">
+    <div class="keys">WASD drive / walk &nbsp;·&nbsp; E enter car &nbsp;·&nbsp; F punch &nbsp;·&nbsp; J job &nbsp;·&nbsp; Shift sprint &nbsp;·&nbsp; Esc pause</div>
+  </div>
+  <div id="toast" class="hidden"></div>
 </div>
 
-<!-- Start screen -->
-<div id="start-screen" class="screen">
-  <div class="panel">
-    <h1>SOLMAR <span>HEAT</span></h1>
-    <p class="tagline">An open-world crime game in sun-soaked Solmar Bay</p>
-    <p id="story-text"></p>
-    <ul id="mission-list"></ul>
-    <div class="buttons">
-      <button id="btn-start">▶ Start the story</button>
-      <button id="btn-continue" class="hidden secondary">Continue — saved game</button>
-      <button id="btn-restart-save" class="secondary">New game (wipe save)</button>
+<!-- ============ Start menu ============ -->
+<div id="menu-start" class="menu">
+  <div class="menu-card">
+    <h1>SOLMAR HEAT</h1>
+    <p class="tagline">An open-world crime story in sun-soaked Solmar Bay.<br>Rico Vega is back — and the whole city owes him.</p>
+    <p id="save-line"></p>
+    <button id="btn-play" class="btn big">NEW GAME</button>
+    <button id="btn-continue" class="btn big hidden">CONTINUE</button>
+    <div class="howto">
+      <h2>HOW TO PLAY</h2>
+      <p><b>WASD / arrows</b> — walk and drive &nbsp; <b>Mouse drag</b> — look around</p>
+      <p><b>E</b> — steal / enter a car, bike or boat &nbsp; <b>F</b> — punch</p>
+      <p><b>J</b> — start the next job &nbsp; <b>M</b> — minimap zoom &nbsp; <b>Shift</b> — sprint</p>
+      <p>Steal rides, run five story jobs, grab the 12 hidden packages and 10 cash stashes, hit the stunt ramps — and stay ahead of the SBPD. Wanted level 3 and up means roadblocks.</p>
     </div>
-    <p class="controls">
-      <b>Drive / walk:</b> WASD &nbsp;·&nbsp; <b>Camera:</b> mouse (click to lock) &nbsp;·&nbsp;
-      <b>E:</b> steal / exit car &nbsp;·&nbsp; <b>F:</b> punch &nbsp;·&nbsp; <b>Shift:</b> sprint &nbsp;·&nbsp;
-      <b>H:</b> horn &nbsp;·&nbsp; <b>M:</b> next job &nbsp;·&nbsp; <b>P:</b> pause &nbsp;·&nbsp; <b>R:</b> reload save
-    </p>
-    <p class="fine">Steal cars, outrun the SBPD, run four jobs for Lena and Mr. Okafor, and find the hidden cash stashes. Progress saves automatically.</p>
-    <button id="btn-music" class="secondary small">Music: ON</button>
+    <p class="fine">An original game. Solmar Bay, Rico Vega and the SBPD are invented for this game; no characters, places or art are taken from any other game.</p>
   </div>
 </div>
 
-<!-- Pause screen -->
-<div id="pause-screen" class="screen hidden">
-  <div class="panel">
-    <h2>PAUSED</h2>
-    <p>Solmar Bay waits for no one, Rico. Well — except now.</p>
-    <div class="buttons">
-      <button id="btn-resume">Resume</button>
-      <button id="btn-quit-menu" class="secondary">Quit to menu</button>
-    </div>
+<!-- ============ Pause menu ============ -->
+<div id="menu-pause" class="menu hidden">
+  <div class="menu-card">
+    <h1>PAUSED</h1>
+    <p class="tagline">Solmar Bay waits for no one. Except right now.</p>
+    <button id="btn-resume" class="btn big">RESUME</button>
+    <button id="btn-quit" class="btn big">QUIT TO MENU</button>
   </div>
 </div>
 
-<!-- Busted / wasted screen -->
-<div id="end-screen" class="screen hidden">
-  <div class="panel">
-    <h2 id="end-title">BUSTED</h2>
-    <p id="end-text"></p>
-    <div class="buttons">
-      <button id="btn-retry">Back on the streets</button>
-      <button id="btn-end-menu" class="secondary">Main menu</button>
-    </div>
+<!-- ============ Busted ============ -->
+<div id="menu-busted" class="menu hidden">
+  <div class="menu-card">
+    <h1 class="red">BUSTED</h1>
+    <p class="tagline">The SBPD caught up with Rico.</p>
+    <p id="busted-fine"></p>
+    <button id="btn-busted-retry" class="btn big">BACK ON THE STREETS</button>
   </div>
 </div>
 
-<div id="load-error" class="hidden"></div>
-<script type="module" src="src/main.js"></script>
+<!-- ============ Wasted ============ -->
+<div id="menu-wasted" class="menu hidden">
+  <div class="menu-card">
+    <h1 class="red">WASTED</h1>
+    <p class="tagline">Rico went down swinging. Solmar Bay is still his — he just has to take it back.</p>
+    <button id="btn-wasted-retry" class="btn big">TRY AGAIN</button>
+  </div>
+</div>
+
+<!-- ============ Job complete card ============ -->
+<div id="mission-card" class="menu hidden">
+  <div class="menu-card">
+    <h1 id="mission-title"></h1>
+    <p id="mission-payout" class="tagline"></p>
+    <button id="btn-mission-ok" class="btn big">KEEP GOING</button>
+  </div>
+</div>
+
+<script type="module" src="./src/boot.js"></script>
 </body>
 </html>
