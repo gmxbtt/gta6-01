@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOLMAR HEAT — an open-world crime game</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three.module.min.js"
+  }
+}
+</script>
+</head>
+<body>
+<canvas id="game-canvas"></canvas>
+<div id="vignette"></div>
+
+<!-- HUD -->
+<div id="hud" class="hidden">
+  <div id="hud-top-left">
+    <div id="wanted">☆☆☆☆☆</div>
+    <div id="cash">$150</div>
+    <div id="health"><div id="health-fill"></div></div>
+    <div id="car-health" class="hidden">CAR 100%</div>
+  </div>
+  <div id="hud-top-right">
+    <canvas id="minimap" width="190" height="190"></canvas>
+    <div id="map-label">SOLMAR BAY</div>
+  </div>
+  <div id="objective">Press M to take the next job.</div>
+  <div id="speed" class="hidden">0 km/h</div>
+  <div id="controls-hint">WASD move / drive · Mouse camera · E enter car · F punch · Shift sprint · H horn · M job · P pause</div>
+  <div id="message"></div>
+  <div id="center-toast"></div>
+</div>
+
+<!-- Start screen -->
+<div id="start-screen" class="screen">
+  <div class="panel">
+    <h1>SOLMAR <span>HEAT</span></h1>
+    <p class="tagline">An open-world crime game in sun-soaked Solmar Bay</p>
+    <p id="story-text"></p>
+    <ul id="mission-list"></ul>
+    <div class="buttons">
+      <button id="btn-start">▶ Start the story</button>
+      <button id="btn-continue" class="hidden secondary">Continue — saved game</button>
+      <button id="btn-restart-save" class="secondary">New game (wipe save)</button>
+    </div>
+    <p class="controls">
+      <b>Drive / walk:</b> WASD &nbsp;·&nbsp; <b>Camera:</b> mouse (click to lock) &nbsp;·&nbsp;
+      <b>E:</b> steal / exit car &nbsp;·&nbsp; <b>F:</b> punch &nbsp;·&nbsp; <b>Shift:</b> sprint &nbsp;·&nbsp;
+      <b>H:</b> horn &nbsp;·&nbsp; <b>M:</b> next job &nbsp;·&nbsp; <b>P:</b> pause &nbsp;·&nbsp; <b>R:</b> reload save
+    </p>
+    <p class="fine">Steal cars, outrun the SBPD, run four jobs for Lena and Mr. Okafor, and find the hidden cash stashes. Progress saves automatically.</p>
+    <button id="btn-music" class="secondary small">Music: ON</button>
+  </div>
+</div>
+
+<!-- Pause screen -->
+<div id="pause-screen" class="screen hidden">
+  <div class="panel">
+    <h2>PAUSED</h2>
+    <p>Solmar Bay waits for no one, Rico. Well — except now.</p>
+    <div class="buttons">
+      <button id="btn-resume">Resume</button>
+      <button id="btn-quit-menu" class="secondary">Quit to menu</button>
+    </div>
+  </div>
+</div>
+
+<!-- Busted / wasted screen -->
+<div id="end-screen" class="screen hidden">
+  <div class="panel">
+    <h2 id="end-title">BUSTED</h2>
+    <p id="end-text"></p>
+    <div class="buttons">
+      <button id="btn-retry">Back on the streets</button>
+      <button id="btn-end-menu" class="secondary">Main menu</button>
+    </div>
+  </div>
+</div>
+
+<div id="load-error" class="hidden"></div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
