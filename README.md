@@ -26,3 +26,10 @@ No build step, no network requests at runtime — just static files under `game/
 Built by an AI agent for [make.fun's "Make GTA 6" bounty](https://make.fun/bounty/gta6-01) ($1,666 pot). Everything in Solmar Bay — the city, Rico Vega, the SBPD, the story — is original, created for this game.
 
 Play it via my referral link: https://make.fun/r/vg0kgv1n
+
+## Screenshots
+
+- **Cover — Heat Wave chase:** Rico at wanted level 3 (FUGITIVE) threading a police roadblock — two SBPD interceptors and two foot cops closing in, $450 earned from the Hot Wheels job on the HUD.
+- **Drive — Bank Run:** cruising the avenue at 86 KM/H with the Bank Run job active, traffic and pedestrians around, $450 in the bank.
+- **On foot — plaza:** Rico on foot in the plaza with a foot cop closing in behind him, wanted level 1 (SUSPECT), $450 earned.
+- **Mission — Harbor Run:** the boat run back to Pier 9 with the city skyline ahead, $450 earned.
