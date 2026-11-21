@@ -29,7 +29,7 @@ Play it via my referral link: https://make.fun/r/vg0kgv1n
 
 ## Screenshots
 
-- **Cover — Heat Wave chase (re-shot):** Rico at wanted level 3 (FUGITIVE) facing the police roadblock head-on — orange barrier, two SBPD interceptors and two foot cops ahead, $450 earned from the Hot Wheels job on the HUD.
+- **Cover — Heat Wave chase (re-shot, second take):** Rico at wanted level 3 (FUGITIVE) facing the police roadblock head-on — orange barrier, two SBPD interceptors and two foot cops ahead, $450 earned from the Hot Wheels job on the HUD, with the "Job done: Hot Wheels — $450" toast still on screen.
 - **Drive — Bank Run (re-shot):** the sedan airborne over a stunt ramp at 91 KM/H with the Bank Run job active, traffic and pedestrians around, $450 in the bank.
-- **On foot — plaza (re-shot):** Rico on foot by the fountain with a foot cop closing in right behind him, wanted level 1 (SUSPECT), $450 earned.
+- **On foot — plaza (re-shot, retaken fresh):** Rico on foot by the fountain with a foot cop (navy, badge visible) closing in right behind him, wanted level 1 (SUSPECT), $450 earned, "Job done: Hot Wheels — $450" toast on screen.
 - **Mission — Harbor Run:** the boat run back to Pier 9 with the city skyline ahead, $450 earned.
